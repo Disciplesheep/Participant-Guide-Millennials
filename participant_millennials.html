@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Life-Connect Method · Participant Guide · 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>:root{
+  --cream:#FAF6EE;
+  --warm-white:#FFFDF8;
+  --gold:#C9A84C;
+  --gold-light:#E8D196;
+  --ink:#1A1208;
+  --ink-mid:#3D2A1A;
+  --accent:#5C7A3E;
+  --real:#1F4E6B;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:36px;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);min-height:100vh;overflow-x:hidden;line-height:1.2;padding-bottom:calc(72px + env(safe-area-inset-bottom));-webkit-font-smoothing:antialiased;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+
+/* BOTTOM NAV — matches leaders guide exactly */
+.main-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--warm-white);border-top:2px solid rgba(0,0,0,0.08);box-shadow:0 -2px 14px rgba(0,0,0,0.10);padding-bottom:env(safe-area-inset-bottom);}
+.main-nav-inner{max-width:760px;margin:0 auto;display:flex;}
+.main-tab{flex:1;min-width:0;padding:13px 8px 11px;border:none;background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;letter-spacing:0.3px;text-transform:uppercase;color:#aaa;border-top:3px solid transparent;transition:all 0.22s;display:flex;flex-direction:column;align-items:center;gap:2px;}
+.main-tab:hover{background:var(--cream);}
+.tab-icon{font-size:clamp(21px,2.2vw,26px);line-height:1;}
+.tab-label{font-size:clamp(11px,1.3vw,14px);letter-spacing:0.5px;}
+.main-tab.active[data-tab="main"]{color:var(--accent);border-top-color:var(--accent);}
+.main-tab.active[data-tab="real"]{color:var(--real);border-top-color:var(--real);}
+
+/* SCREENS */
+.screen{display:none;}
+.screen.active{display:block;animation:slideIn .25s ease;}
+
+/* HERO */
+.hero-main{background:linear-gradient(150deg,#1A2810 0%,#2A3D1A 50%,#5C7A3E 100%);text-align:center;padding:52px 24px 44px;color:white;position:relative;overflow:hidden;}
+.hero-real{background:linear-gradient(155deg,#0A0A0A 0%,#1A1208 40%,#2C1A0A 70%,#1F4E6B 100%);text-align:center;padding:52px 24px 44px;color:white;position:relative;overflow:hidden;}
+.hero-main::after,.hero-real::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 65% 35%,rgba(255,255,255,0.05),transparent 65%);pointer-events:none;}
+.hero-tag{font-family:'Cinzel',serif;font-size:14px;letter-spacing:4px;text-transform:uppercase;color:var(--gold-light);margin-bottom:12px;opacity:0;animation:fadeUp .6s .1s forwards;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(44px,9vw,70px);line-height:1.0;margin-bottom:8px;opacity:0;animation:fadeUp .6s .25s forwards;}
+.hero-title em{color:var(--gold);font-style:italic;}
+.hero-sub{font-size:clamp(20px,2.2vw,26px);color:rgba(255,255,255,0.65);font-style:italic;opacity:0;animation:fadeUp .6s .4s forwards;}
+
+/* SESSION LIST */
+.list-wrap{max-width:660px;margin:0 auto;padding:26px 18px;}
+.list-label{font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--ink-mid);opacity:0.65;margin-bottom:10px;padding-left:2px;}
+.card{background:white;border:1.5px solid rgba(0,0,0,0.07);border-radius:16px;padding:18px 20px;display:flex;align-items:center;gap:15px;cursor:pointer;transition:all .2s;box-shadow:0 1px 4px rgba(0,0,0,0.04);margin-bottom:9px;width:100%;font-family:'DM Sans',sans-serif;text-align:left;}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.09);border-color:rgba(0,0,0,0.12);}
+.card:active{transform:translateY(0);}
+.cnum{width:40px;height:40px;min-width:40px;border-radius:50%;background:var(--accent);color:white;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:14px;font-weight:600;}
+.cnum.real{background:var(--real);}
+.ctitle{flex:1;font-weight:600;font-size:clamp(23px,2.2vw,28px);color:var(--ink);line-height:1.15;}
+.csub{font-size:15px;color:var(--ink-mid);opacity:0.72;margin-top:3px;font-style:italic;font-weight:400;display:block;}
+.carr{font-size:22px;opacity:0.35;color:var(--accent);margin-left:4px;flex-shrink:0;}
+.carr.real{color:var(--real);}
+
+/* STICKY TOPBAR */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(250,246,238,0.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.08);padding:10px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.back{display:inline-flex;align-items:center;gap:7px;cursor:pointer;font-size:17px;font-weight:500;color:var(--ink-mid);opacity:0.75;transition:opacity .2s;background:none;border:none;font-family:'DM Sans',sans-serif;padding:0;white-space:nowrap;flex-shrink:0;}
+.back:hover{opacity:1;}
+.topbar-title{font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,26px);font-weight:700;color:var(--ink);opacity:0;transition:opacity .25s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:55vw;text-align:right;}
+.topbar-title.visible{opacity:1;}
+
+/* CONTENT BODY */
+.content{display:none;animation:slideIn .28s ease;}
+.content.active{display:block;}
+.body{max-width:660px;margin:0 auto;padding:22px 18px 40px;}
+.sess-num{font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);opacity:0.9;margin-bottom:5px;}
+.sess-num.real{color:var(--real);}
+.sess-title{font-family:'Playfair Display',serif;font-size:clamp(40px,6vw,60px);line-height:1.05;margin-bottom:22px;color:var(--ink);}
+
+/* PASSAGE */
+.pb{background:var(--cream);border-radius:10px;padding:20px 22px;margin:0 0 14px 0;border:1px solid rgba(201,168,76,0.22);}
+.plabel{font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--ink-mid);opacity:1;display:block;margin-bottom:12px;}
+.pt{font-family:'Playfair Display',serif;font-size:clamp(23px,2.2vw,28px);line-height:1.3;color:var(--ink-mid);}
+.vn{font-family:'Cinzel',serif;font-size:0.72em;vertical-align:super;color:var(--ink-mid);margin-right:2px;opacity:0.85;}
+.pt mark{background:rgba(201,168,76,0.28);color:inherit;border-radius:3px;padding:0 2px;font-style:italic;}
+.vl{display:block;margin-bottom:6px;}
+.vdiv{text-align:center;color:var(--gold);opacity:0.4;margin:10px 0;font-size:18px;letter-spacing:4px;}
+.pb-gap{margin-bottom:8px;}
+
+/* SECTIONS */
+.sec{margin-bottom:20px;}
+.slabel{font-family:'Cinzel',serif;font-size:clamp(13px,1.3vw,16px);letter-spacing:2px;text-transform:uppercase;font-weight:600;padding:4px 11px;border-radius:5px;display:inline-block;margin-bottom:10px;}
+.sec.open-q .slabel{background:#FEF3E2;color:#B45309;}
+.sec.discuss .slabel{background:#EBF4FA;color:#1A5276;}
+.sec.apply   .slabel{background:#ECFDF5;color:#065F46;}
+.open-q p{font-size:clamp(24px,2.2vw,30px);line-height:1.2;color:var(--ink);font-style:italic;opacity:0.82;}
+.qlist{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.qlist li{font-size:clamp(24px,2.2vw,30px);line-height:1.2;padding:16px 48px 16px 20px;background:white;border-radius:11px;border:1px solid rgba(0,0,0,0.07);position:relative;color:var(--ink);}
+.qlist li::after{content:'?';position:absolute;right:14px;top:13px;font-family:'Playfair Display',serif;font-size:22px;opacity:.07;font-style:italic;}
+.apply-box{background:white;border-radius:12px;padding:20px 22px;border-left:4px solid var(--gold);font-size:clamp(24px,2.2vw,30px);line-height:1.2;color:var(--ink);}
+</style>
+</head>
+<body>
+
+<!-- MAIN SESSIONS SCREEN -->
+<div id="screen-main" class="screen active">
+  <div class="hero-main">
+    <p class="hero-tag">PPC · Palawan · 2026</p>
+    <h1 class="hero-title">Life-Connect <em>Method</em></h1>
+    <p class="hero-sub">Life on Purpose · Psalms &amp; Proverbs · 6 Sessions</p>
+  </div>
+  <div class="list-wrap">
+    <p class="list-label">Sessions · Psalms & Proverbs</p>
+    <div id="main-cards"></div>
+  </div>
+</div>
+
+<!-- FAITH & THE REAL WORLD SCREEN -->
+<div id="screen-real" class="screen">
+  <div class="hero-real">
+    <p class="hero-tag">PPC · Palawan · 2026</p>
+    <h1 class="hero-title">Faith &amp; the <em>Real World</em></h1>
+    <p class="hero-sub">12 Bible Study Topics on Present Issues &amp; Trends</p>
+  </div>
+  <div class="list-wrap">
+    <p class="list-label">Select a Topic</p>
+    <div id="real-cards"></div>
+  </div>
+</div>
+
+<!-- SESSION CONTENT -->
+<div class="content" id="content">
+  <div class="topbar">
+    <button class="back" id="back-btn" onclick="goBack()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Sessions
+    </button>
+    <span class="topbar-title" id="topbar-title"></span>
+  </div>
+  <div class="body" id="body"></div>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="main-nav">
+  <div class="main-nav-inner">
+    <button class="main-tab active" data-tab="main" onclick="showScreen('main')">
+      <span class="tab-icon">🌿</span>
+      <span class="tab-label">Millennials</span>
+    </button>
+    <button class="main-tab" data-tab="real" onclick="showScreen('real')">
+      <span class="tab-icon">🌍</span>
+      <span class="tab-label">Real World</span>
+    </button>
+  </div>
+</nav>
+
+<script>
+const MAIN_TOTAL = 6;
+const RW_TOTAL = 12;
+let currentTab = 'main';
+
+const mainSessions = [
+  {title:`"I'm Drowning"`,passage:`<div class="pb"><span class="plabel">Psalm 18:1–6, 16–19 · NASB</span><div class="pt"><span class="vl"><span class="vn">1</span><mark>"I love You, O Lord, my strength."</mark></span><span class="vl"><span class="vn">2</span>The Lord is my rock and my fortress and my deliverer, my God, my rock, in whom I take refuge; my shield and the horn of my salvation, my stronghold.</span><span class="vl"><span class="vn">3</span>I call upon the Lord, who is worthy to be praised, and I am saved from my enemies.</span><span class="vl"><span class="vn">4</span><mark>The cords of death encompassed me, and the torrents of ungodliness terrified me.</mark></span><span class="vl"><span class="vn">5</span>The cords of Sheol surrounded me; the snares of death confronted me.</span><span class="vl"><span class="vn">6</span><mark>In my distress I called upon the Lord and cried to my God for help; He heard my voice out of His temple, and my cry for help before Him came into His ears.</mark></span><div class="vdiv">· · ·</div><span class="vl"><span class="vn">16</span>He sent from on high, He took me; He drew me out of many waters.</span><span class="vl"><span class="vn">17</span>He delivered me from my strong enemy, and from those who hated me, for they were too mighty for me.</span><span class="vl"><span class="vn">18</span>They confronted me in the day of my calamity, but the Lord was my stay.</span><span class="vl"><span class="vn">19</span><mark>He brought me forth also into a broad place; He rescued me, because He delighted in me.</mark></span></div></div><div class="pb-gap"></div>`,connect:`What's one area of life right now where you feel most stretched or tired?`,q:[`David writes from a place of genuine crisis — not a Sunday morning smile. When have you been most honest with God?`,`He says "He rescued me because He delighted in me" (v.19). Not because of performance. How does that land for you?`,`What would it look like to believe God actually delights in you — right now, in this season?`],apply:`Write or say out loud one honest thing you'd say to God today if you believed He was actually listening.`},
+  {title:`"The Comparison Trap"`,passage:`<div class="pb"><span class="plabel">Psalm 73:1–17 · NASB</span><div class="pt"><span class="vl"><span class="vn">1</span>Surely God is good to Israel, to those who are pure in heart!</span><span class="vl"><span class="vn">2</span>But as for me, my feet came close to stumbling, my steps had almost slipped.</span><span class="vl"><span class="vn">3</span><mark>For I was envious of the arrogant as I saw the prosperity of the wicked.</mark></span><span class="vl"><span class="vn">4</span>For there are no pains in their death, and their body is fat.</span><span class="vl"><span class="vn">5</span>They are not in trouble as other men, nor are they plagued like mankind.</span><span class="vl"><span class="vn">12</span><mark>Behold, these are the wicked; and always at ease, they have increased in wealth.</mark></span><span class="vl"><span class="vn">13</span>Surely in vain I have kept my heart pure and washed my hands in innocence;</span><span class="vl"><span class="vn">14</span>For I have been stricken all day long and chastened every morning.</span><div class="vdiv">· · ·</div><span class="vl"><span class="vn">16</span>When I pondered to understand this, it was troublesome in my sight</span><span class="vl"><span class="vn">17</span><mark>Until I came into the sanctuary of God; then I perceived their end.</mark></span></div></div><div class="pb-gap"></div>`,connect:`Social media, work, your neighbor's new car — where do you feel the comparison trap most?`,q:[`Asaph almost loses his faith watching "the wicked prosper." Where do you feel like the faithful are losing?`,`Verse 17: Everything changed "until I entered the sanctuary of God." What changes your perspective?`],apply:`What is one comparison you need to lay down this week?`},
+  {title:`"The Wisdom of Small Decisions"`,passage:`<div class="pb"><span class="plabel">Proverbs 4:20–27 · NASB</span><div class="pt"><span class="vl"><span class="vn">20</span>My son, give attention to my words; incline your ear to my sayings.</span><span class="vl"><span class="vn">21</span>Do not let them depart from your sight; keep them in the midst of your heart.</span><span class="vl"><span class="vn">22</span>For they are life to those who find them and health to all their body.</span><span class="vl"><span class="vn">23</span><mark>Watch over your heart with all diligence, for from it flow the springs of life.</mark></span><span class="vl"><span class="vn">24</span>Put away from you a deceitful mouth and put devious speech far from you.</span><span class="vl"><span class="vn">25</span>Let your eyes look directly ahead and let your gaze be fixed straight in front of you.</span><span class="vl"><span class="vn">26</span><mark>Watch the path of your feet and all your ways will be established.</mark></span><span class="vl"><span class="vn">27</span>Do not turn to the right nor to the left; turn your foot from evil.</span></div></div><div class="pb-gap"></div>`,connect:`What's one small decision in your past that changed the direction of your life?`,q:[`"Guard your heart, for everything you do flows from it." What are you feeding your heart daily — what inputs?`,`"Make level paths for your feet... do not swerve." What does a level path look like in your current life stage?`],apply:`Name one habit, relationship, or input into your life that you know is pulling you in the wrong direction.`},
+  {title:`"When Work or Marriage Feels Broken"`,passage:`<div class="pb"><span class="plabel">Psalm 62:1–8 · NASB</span><div class="pt"><span class="vl"><span class="vn">1</span><mark>My soul waits in silence for God only; from Him is my salvation.</mark></span><span class="vl"><span class="vn">2</span>He only is my rock and my salvation, my stronghold; I shall not be greatly shaken.</span><span class="vl"><span class="vn">5</span><mark>My soul, wait in silence for God only, for my hope is from Him.</mark></span><span class="vl"><span class="vn">6</span>He only is my rock and my salvation, my stronghold; I shall not be shaken.</span><span class="vl"><span class="vn">7</span>On God my salvation and my glory rest; the rock of my strength, my refuge is in God.</span><span class="vl"><span class="vn">8</span>Trust in Him at all times, O people; pour out your heart before Him; God is a refuge for us.</span></div></div><div class="pb"><span class="plabel">Colossians 3:23–24 · NASB</span><div class="pt"><span class="vl"><span class="vn">23</span><mark>Whatever you do, do your work heartily, as for the Lord rather than for men,</mark></span><span class="vl"><span class="vn">24</span>knowing that from the Lord you will receive the reward of the inheritance. It is the Lord Christ whom you serve.</span></div></div><div class="pb-gap"></div>`,connect:`Where in your work or closest relationships do you feel most unappreciated or invisible?`,q:[`"My soul finds rest in God alone." What's the difference between looking to people for rest vs. God?`,`"Work as for the Lord." How does that change the meaning of ordinary, unrewarded work?`],apply:`Which relationship or role do you most need to re-frame as an act of worship this week?`},
+  {title:`"Raising Arrows"`,passage:`<div class="pb"><span class="plabel">Psalm 127:1–5 · NASB</span><div class="pt"><span class="vl"><span class="vn">1</span><mark>Unless the Lord builds the house, they labor in vain who build it; unless the Lord guards the city, the watchman keeps awake in vain.</mark></span><span class="vl"><span class="vn">2</span>It is vain for you to rise up early, to retire late, to eat the bread of painful labors; for He gives to His beloved even in his sleep.</span><span class="vl"><span class="vn">3</span><mark>Behold, children are a gift of the Lord, the fruit of the womb is a reward.</mark></span><span class="vl"><span class="vn">4</span>Like arrows in the hand of a warrior, so are the children of one's youth.</span></div></div><div class="pb"><span class="plabel">Psalm 128:1–4 · NASB</span><div class="pt"><span class="vl"><span class="vn">1</span>How blessed is everyone who fears the Lord, who walks in His ways.</span><span class="vl"><span class="vn">2</span>When you shall eat of the fruit of your hands, you will be happy and it will be well with you.</span><span class="vl"><span class="vn">3</span><mark>Your wife shall be like a fruitful vine within your house, your children like olive plants around your table.</mark></span><span class="vl"><span class="vn">4</span>Behold, for thus shall the man be blessed who fears the Lord.</span></div></div><div class="pb-gap"></div>`,connect:`What's one fear you have as a parent — or what kind of person do you want to be remembered as?`,q:[`"Unless the Lord builds the house, the builders labor in vain." What does it mean to build a family with God at the center?`,`What does a "blessed" home look like to you? How close is that to what you have now?`],apply:`What is one thing you want to start doing differently in your home starting this week?`},
+  {title:`"The Good Life"`,passage:`<div class="pb"><span class="plabel">Psalm 1 · NASB</span><div class="pt"><span class="vl"><span class="vn">1</span><mark>How blessed is the man who does not walk in the counsel of the wicked, nor stand in the path of sinners, nor sit in the seat of scoffers!</mark></span><span class="vl"><span class="vn">2</span><mark>But his delight is in the law of the Lord, and in His law he meditates day and night.</mark></span><span class="vl"><span class="vn">3</span><mark>He will be like a tree firmly planted by streams of water, which yields its fruit in its season and its leaf does not wither; and in whatever he does, he prospers.</mark></span><span class="vl"><span class="vn">4</span>The wicked are not so, but they are like chaff which the wind drives away.</span><span class="vl"><span class="vn">6</span>For the Lord knows the way of the righteous, but the way of the wicked will perish.</span></div></div><div class="pb"><span class="plabel">John 15:4–5 · NASB</span><div class="pt"><span class="vl"><span class="vn">4</span><mark>"Abide in Me, and I in you. As the branch cannot bear fruit of itself unless it abides in the vine, so neither can you unless you abide in Me."</mark></span><span class="vl"><span class="vn">5</span>"I am the vine, you are the branches; he who abides in Me and I in him, he bears much fruit, for <mark>apart from Me you can do nothing.</mark>"</span></div></div><div class="pb-gap"></div>`,connect:`How do you define a successful life? Has that definition changed in the last 5 years?`,q:[`Psalm 1 describes the person who meditates on God's Word as "like a tree planted by streams." What does being rooted mean in a fast-moving world?`,`Jesus says "apart from me you can do nothing." Is that discouraging or freeing? Why?`],apply:`What is one discipline — daily or weekly — that would help you stay connected to God as you move into the next season?`}
+];
+const rwSessions = [
+  {title:`Calm in the Storm`,sub:`Mental Health, Anxiety & Inner Peace`,
+   passage:`<div class="pb"><span class="plabel">Matthew 6:25–27, 33–34 · NASB</span><div class="pt"><span class="vl"><span class="vn">25</span><mark>"For this reason I say to you, do not be worried about your life, as to what you will eat or what you will drink; nor for your body, as to what you will put on. Is not life more than food, and the body more than clothing?"</mark></span><span class="vl"><span class="vn">26</span>"Look at the birds of the air, that they do not sow, nor reap nor gather into barns, and yet your heavenly Father feeds them. Are you not worth much more than they?"</span><span class="vl"><span class="vn">27</span>"And who of you by being worried can add a single hour to his life?"</span><span class="vl"><span class="vn">33</span><mark>"But seek first His kingdom and His righteousness, and all these things will be added to you."</mark></span><span class="vl"><span class="vn">34</span>"So do not worry about tomorrow; for tomorrow will care for itself. Each day has enough trouble of its own."</span></div></div><div class="pb"><span class="plabel">Philippians 4:6–7 · NASB</span><div class="pt"><span class="vl"><span class="vn">6</span><mark>Be anxious for nothing, but in everything by prayer and supplication with thanksgiving let your requests be made known to God.</mark></span><span class="vl"><span class="vn">7</span><mark>And the peace of God, which surpasses all comprehension, will guard your hearts and your minds in Christ Jesus.</mark></span></div></div><div class="pb-gap"></div>`,
+   connect:`On a scale of 1–10, how anxious do you feel in a typical week? What's the biggest source of that?`,
+   q:[`"Do not worry about your life" — does that feel realistic or dismissive to you? What do you think Jesus means?`,`Philippians 4:6 says to bring everything to God in prayer with thanksgiving. What's hard about the "thanksgiving" part when you're anxious?`,`"The peace that transcends understanding" — have you ever experienced a peace that made no logical sense? Tell me about it.`,`What is the difference between healthy planning and unhealthy anxiety? Where do you cross that line?`],
+   apply:`Name one worry you will consciously give to God in prayer every morning this week. Write it down.`},
+  {title:`More Than a Highlight Reel`,sub:`Social Media, Identity & the Comparison Trap`,
+   passage:`<div class="pb"><span class="plabel">Psalm 139:13–16 · NASB</span><div class="pt"><span class="vl"><span class="vn">13</span><mark>For You formed my inward parts; You wove me in my mother's womb.</mark></span><span class="vl"><span class="vn">14</span><mark>I will give thanks to You, for I am fearfully and wonderfully made; wonderful are Your works, and my soul knows it very well.</mark></span><span class="vl"><span class="vn">15</span>My frame was not hidden from You, when I was made in secret, and skillfully wrought in the depths of the earth;</span><span class="vl"><span class="vn">16</span>Your eyes have seen my unformed substance; and in Your book were all written the days that were ordained for me, when as yet there was not one of them.</span></div></div><div class="pb"><span class="plabel">Galatians 1:10 · NASB</span><div class="pt"><span class="vl"><span class="vn">10</span><mark>For am I now seeking the favor of men, or of God? Or am I striving to please men? If I were still trying to please men, I would not be a bond-servant of Christ.</mark></span></div></div><div class="pb-gap"></div>`,
+   connect:`Be honest: When you scroll social media, do you usually feel better or worse about yourself? Why do you keep scrolling?`,
+   q:[`"You are fearfully and wonderfully made." Does that feel true to you right now — or does it feel like a church cliché? Why?`,`Paul asks: "Am I now trying to win the approval of human beings or of God?" Where are you seeking approval most right now?`,`What is the difference between sharing your life online and performing your life online?`,`If you woke up tomorrow and your social media accounts were gone — what would you feel? Relief? Loss? Both?`],
+   apply:`One-week challenge: Set a 30-minute daily screen time limit on your most-used social media app. At the end of the week, journal: what did you notice about yourself?`},
+  {title:`Human in the Age of AI`,sub:`Technology, AI & What Makes Us Uniquely Human`,
+   passage:`<div class="pb"><span class="plabel">Genesis 1:27–28 · NASB</span><div class="pt"><span class="vl"><span class="vn">27</span><mark>God created man in His own image, in the image of God He created him; male and female He created them.</mark></span><span class="vl"><span class="vn">28</span>God blessed them; and God said to them, "Be fruitful and multiply, and fill the earth, and subdue it; and rule over the fish of the sea and over the birds of the sky and over every living thing that moves on the earth."</span></div></div><div class="pb"><span class="plabel">Psalm 8:3–6 · NASB</span><div class="pt"><span class="vl"><span class="vn">3</span>When I consider Your heavens, the work of Your fingers, the moon and the stars, which You have ordained;</span><span class="vl"><span class="vn">4</span><mark>What is man that You take thought of him, and the son of man that You care for him?</mark></span><span class="vl"><span class="vn">5</span><mark>Yet You have made him a little lower than God, and You crown him with glory and majesty!</mark></span><span class="vl"><span class="vn">6</span>You make him to rule over the works of Your hands; You have put all things under his feet.</span></div></div><div class="pb-gap"></div>`,
+   connect:`Have you used an AI tool recently (ChatGPT, Gemini, etc.)? What did you think? Does it excite or unsettle you?`,
+   q:[`The Bible says humans are made in the "image of God" (imago dei). What does that mean — and is that something AI could ever have?`,`If AI can write, create art, diagnose illness, and hold conversations — what do you think is uniquely and irreducibly human?`,`How do you think Christians should engage with AI tools? As a gift? A threat? With caution?`,`What fears, if any, do you have about AI — in your career, your relationships, your sense of purpose?`],
+   apply:`Use one AI tool intentionally for something helpful this week — then reflect: what did it do well, and what did it clearly lack compared to a human?`},
+  {title:`Rich or Free?`,sub:`Money, Debt, the OFW Dream & True Contentment`,
+   passage:`<div class="pb"><span class="plabel">1 Timothy 6:6–10 · NASB</span><div class="pt"><span class="vl"><span class="vn">6</span><mark>But godliness actually is a means of great gain when accompanied by contentment.</mark></span><span class="vl"><span class="vn">7</span>For we have brought nothing into the world, so we cannot take anything out of it either.</span><span class="vl"><span class="vn">8</span>If we have food and covering, with these we shall be content.</span><span class="vl"><span class="vn">9</span>But those who want to get rich fall into temptation and a snare and many foolish and harmful desires which plunge men into ruin and destruction.</span><span class="vl"><span class="vn">10</span><mark>For the love of money is a root of all sorts of evil, and some by longing for it have wandered away from the faith and pierced themselves with many griefs.</mark></span></div></div><div class="pb"><span class="plabel">Luke 12:15, 20–21 · NASB</span><div class="pt"><span class="vl"><span class="vn">15</span><mark>"Beware, and be on your guard against every form of greed; for not even when one has an abundance does his life consist of his possessions."</mark></span><div class="vdiv">· · ·</div><span class="vl"><span class="vn">20</span><mark>"But God said to him, 'You fool! This very night your soul is required of you; and now who will own what you have prepared?'"</mark></span><span class="vl"><span class="vn">21</span>"So is the man who stores up treasure for himself, and is not rich toward God."</span></div></div><div class="pb-gap"></div>`,
+   connect:`What does financial success look like in your family's eyes? Is that picture the same as yours?`,
+   q:[`"The love of money is the root of all kinds of evil." Is that fair? What does it mean to love money — vs. simply needing it?`,`In the Parable of the Rich Fool, the man built bigger barns — what was actually wrong with that?`,`Many Filipinos sacrifice family closeness for OFW income. What is the real cost of that? Is it always wrong?`,`What does contentment look like in a Philippine context where poverty is real — not just a spiritual attitude problem?`],
+   apply:`Write a one-page "theology of money" — what does God say about your relationship with money? Be honest about where you struggle.`},
+  {title:`Love, Sex & the Lonely Screen`,sub:`Dating, Intimacy & God's Design`,
+   passage:`<div class="pb"><span class="plabel">1 Corinthians 6:18–20 · NASB</span><div class="pt"><span class="vl"><span class="vn">18</span><mark>Flee immorality. Every other sin that a man commits is outside the body, but the immoral man sins against his own body.</mark></span><span class="vl"><span class="vn">19</span>Or do you not know that your body is a temple of the Holy Spirit who is in you, whom you have from God, and that you are not your own?</span><span class="vl"><span class="vn">20</span><mark>For you have been bought with a price: therefore glorify God in your body.</mark></span></div></div><div class="pb"><span class="plabel">Song of Solomon 2:7 · NASB</span><div class="pt"><span class="vl"><span class="vn">7</span><mark>"I adjure you, O daughters of Jerusalem, by the gazelles or by the hinds of the field, that you do not arouse or awaken my love until she pleases."</mark></span></div></div><div class="pb-gap"></div>`,
+   connect:`Without judgment: What do you think is the biggest lie young people believe about relationships and sex today?`,
+   q:[`The Bible treats the body as sacred — "a temple of the Holy Spirit." How does that vision of the body differ from how culture treats it?`,`What deeper needs do you think drive the rise of hookup culture and pornography — beyond just "sin"?`,`"Do not awaken love before its time." What does healthy romantic waiting look like — and why is it so counter-cultural?`,`What does it mean to honor someone with your body and your words — before and in marriage?`],
+   apply:`Honest personal audit this week: What am I feeding my mind and desires through what I watch, scroll, or pursue? What do I want to change?`},
+  {title:`Kingdom Citizens in a Noisy World`,sub:`Politics, Elections & What Christians Owe Society`,
+   passage:`<div class="pb"><span class="plabel">Romans 13:1, 4, 7 · NASB</span><div class="pt"><span class="vl"><span class="vn">1</span><mark>Every person is to be in subjection to the governing authorities. For there is no authority except from God, and those which exist are established by God.</mark></span><span class="vl"><span class="vn">4</span>For it is a minister of God to you for good. But if you do what is evil, be afraid; for it does not bear the sword for nothing.</span><span class="vl"><span class="vn">7</span>Render to all what is due them: tax to whom tax is due; custom to whom custom; fear to whom fear; honor to whom honor.</span></div></div><div class="pb"><span class="plabel">Micah 6:8 · NASB</span><div class="pt"><span class="vl"><span class="vn">8</span><mark>He has told you, O man, what is good; and what does the Lord require of you but to do justice, to love kindness, and to walk humbly with your God?</mark></span></div></div><div class="pb-gap"></div>`,
+   connect:`When you think about Philippine politics right now — what is your honest gut reaction? Hopeful? Tired? Angry? Checked out?`,
+   q:[`Paul says governing authorities are "established by God." That was written under Emperor Nero. Does that make it easier or harder to apply?`,`Micah 6:8: "Act justly, love mercy, walk humbly." How does a Christian engage in politics with these three things as the standard?`,`Is it possible to vote or advocate politically without making politics your ultimate hope? What's the difference?`,`What does it look like to be a good citizen of Puerto Princesa — not just a voter, but an active presence for good?`],
+   apply:`Do one small, concrete act of civic good in your community this week — clean a street, attend a barangay meeting, or pray for a specific local leader by name.`},
+  {title:`This Is God's World`,sub:`Climate, Creation & Ecological Responsibility`,
+   passage:`<div class="pb"><span class="plabel">Genesis 2:15 · NASB</span><div class="pt"><span class="vl"><span class="vn">15</span><mark>Then the Lord God took the man and put him into the garden of Eden to cultivate it and keep it.</mark></span></div></div><div class="pb"><span class="plabel">Psalm 104:27–30 · NASB</span><div class="pt"><span class="vl"><span class="vn">27</span>They all wait for You to give them their food in due season.</span><span class="vl"><span class="vn">28</span><mark>You give to them, they gather it up; You open Your hand, they are satisfied with good.</mark></span><span class="vl"><span class="vn">29</span>You hide Your face, they are dismayed; You take away their spirit, they expire and return to their dust.</span><span class="vl"><span class="vn">30</span><mark>You send forth Your Spirit, they are created; and You renew the face of the ground.</mark></span></div></div><div class="pb-gap"></div>`,
+   connect:`What is one way that the natural beauty of Palawan has personally moved you — the sea, the forest, Puerto Bay at night?`,
+   q:[`Genesis 2:15 says God put humans in the garden "to tend and keep it." What does faithful environmental stewardship look like today — especially in Palawan?`,`How do you personally feel about climate change? Is it a spiritual issue, a political issue, or both?`,`Palawan is under pressure — from mining, tourism, development. How should Christians engage with these tensions?`,`If you truly believed the earth belonged to God and was entrusted to you — what would you do differently?`],
+   apply:`Join or start one local care-for-creation initiative this month: a coastal cleanup, tree planting, or refusing single-use plastics for 30 days.`},
+  {title:`Honor, Obligation & Love`,sub:`Filipino Family Pressure, Utang na Loob & the Gospel of Grace`,
+   passage:`<div class="pb"><span class="plabel">Luke 14:25–27 · NASB</span><div class="pt"><span class="vl"><span class="vn">25</span>Now large crowds were going along with Him; and He turned and said to them,</span><span class="vl"><span class="vn">26</span><mark>"If anyone comes to Me, and does not hate his own father and mother and wife and children and brothers and sisters, yes, and even his own life, he cannot be My disciple."</mark></span><span class="vl"><span class="vn">27</span>"Whoever does not carry his own cross and come after Me cannot be My disciple."</span></div></div><div class="pb"><span class="plabel">Ephesians 6:1–4 · NASB</span><div class="pt"><span class="vl"><span class="vn">1</span><mark>Children, obey your parents in the Lord, for this is right.</mark></span><span class="vl"><span class="vn">2</span>"Honor your father and mother" (which is the first commandment with a promise),</span><span class="vl"><span class="vn">3</span>"so that it may be well with you, and that you may live long on the earth."</span><span class="vl"><span class="vn">4</span><mark>Fathers, do not provoke your children to anger, but bring them up in the discipline and instruction of the Lord.</mark></span></div></div><div class="pb-gap"></div>`,
+   connect:`Have you ever felt pressured to do something — for your family, for the group — that you knew wasn't right for you? What did that feel like?`,
+   q:[`Jesus says "If anyone comes to me and does not hate father and mother..." That sounds extreme. What do you think He actually means?`,`How is the Filipino concept of "utang na loob" (debt of gratitude) both beautiful and potentially harmful?`,`"Hiya" (shame) shapes so much Filipino behavior. How is gospel grace different from shame-based motivation?`,`How do you honor your family while still being honest about who God is calling you to be?`],
+   apply:`Write a letter (you don't have to send it) to one family member — expressing both love and honesty about who you are becoming.`},
+  {title:`The Art of Stopping`,sub:`Hustle Culture, Overwork, Burnout & the Biblical Sabbath`,
+   passage:`<div class="pb"><span class="plabel">Exodus 20:8–11 · NASB</span><div class="pt"><span class="vl"><span class="vn">8</span><mark>"Remember the sabbath day, to keep it holy."</mark></span><span class="vl"><span class="vn">9</span>"Six days you shall labor and do all your work,"</span><span class="vl"><span class="vn">10</span><mark>"but the seventh day is a sabbath of the Lord your God; in it you shall not do any work, you or your son or your daughter, your male or your female servant or your cattle or your sojourner who stays with you."</mark></span><span class="vl"><span class="vn">11</span>"For in six days the Lord made the heavens and the earth, the sea and all that is in them, and rested on the seventh day; therefore the Lord blessed the sabbath day and made it holy."</span></div></div><div class="pb"><span class="plabel">Mark 2:27 · NASB</span><div class="pt"><span class="vl"><span class="vn">27</span><mark>Jesus said to them, "The Sabbath was made for man, and not man for the Sabbath."</mark></span></div></div><div class="pb-gap"></div>`,
+   connect:`"Hustle" is glorified on social media. Do you think working harder = a better life? Has that been true in your experience?`,
+   q:[`"The Sabbath was made for man, not man for the Sabbath." What does that tell you about God's design for rest?`,`Why do you think rest feels so difficult — even guilty — for so many people, especially Filipinos with financial pressure?`,`What's the difference between laziness and Sabbath? How do you know when you're resting well versus just avoiding?`,`What would a regular rhythm of genuine rest look like in your life right now — practically, not just ideally?`],
+   apply:`Block out one non-negotiable window of intentional rest this week — no phone, no work, no productivity. Just be. Report how it felt.`},
+  {title:`When Someone Is Gone`,sub:`Death, Grief, OFW Separation & the Hope of Resurrection`,
+   passage:`<div class="pb"><span class="plabel">John 11:32–36, 43–44 · NASB</span><div class="pt"><span class="vl"><span class="vn">32</span>Therefore, when Mary came where Jesus was, she saw Him, and fell at His feet, saying to Him, "Lord, if You had been here, my brother would not have died."</span><span class="vl"><span class="vn">33</span>When Jesus therefore saw her weeping, and the Jews also weeping who came with her, He was deeply moved in spirit and was troubled,</span><span class="vl"><span class="vn">35</span><mark>Jesus wept.</mark></span><span class="vl"><span class="vn">36</span>So the Jews were saying, "See how He loved him!"</span><div class="vdiv">· · ·</div><span class="vl"><span class="vn">43</span>When He had said these things, He cried out with a loud voice, "Lazarus, come forth."</span><span class="vl"><span class="vn">44</span>The man who had died came forth, bound hand and foot with wrappings. Jesus said to them, "Unbind him, and let him go."</span></div></div><div class="pb"><span class="plabel">1 Thessalonians 4:13–14 · NASB</span><div class="pt"><span class="vl"><span class="vn">13</span><mark>But we do not want you to be uninformed, brethren, about those who are asleep, so that you will not grieve as do the rest who have no hope.</mark></span><span class="vl"><span class="vn">14</span>For if we believe that Jesus died and rose again, even so God will bring with Him those who have fallen asleep in Jesus.</span></div></div><div class="pb-gap"></div>`,
+   connect:`Is there someone significant you've lost — through death, distance, or broken relationship? What did that loss teach you?`,
+   q:[`"Jesus wept." He knew He was about to raise Lazarus — and He still wept. What does that tell you about how God relates to your grief?`,`"We grieve, but not like those who have no hope." What is the difference between Christian grief and hopeless grief?`,`In Filipino culture, death is surrounded by ritual and community. What is beautiful about that? What might be missing?`,`For OFW families: how do you process separation grief — the people who are still alive but far away?`],
+   apply:`Write the name of someone you are grieving — through death or absence. Sit with that name in prayer. Tell God what you miss.`},
+  {title:`When Faith Falls Apart`,sub:`Deconstruction, Church Hurt & Honest Doubt`,
+   passage:`<div class="pb"><span class="plabel">Mark 9:22–24 · NASB</span><div class="pt"><span class="vl"><span class="vn">22</span>"But if You can do anything, take pity on us and help us!"</span><span class="vl"><span class="vn">23</span>And Jesus said to him, "'If You can?' All things are possible to him who believes."</span><span class="vl"><span class="vn">24</span><mark>Immediately the boy's father cried out and said, "I do believe; help my unbelief."</mark></span></div></div><div class="pb"><span class="plabel">Habakkuk 1:2–4 · NASB</span><div class="pt"><span class="vl"><span class="vn">2</span><mark>How long, O Lord, will I call for help, and You will not hear? I cry out to You, "Violence!" Yet You do not save.</mark></span><span class="vl"><span class="vn">3</span>Why do You make me see iniquity, and cause me to look on wickedness? Yes, destruction and violence are before me; strife exists and contention arises.</span><span class="vl"><span class="vn">4</span>Therefore the law is ignored and justice is never upheld. For the wicked surround the righteous; therefore justice comes out perverted.</span></div></div><div class="pb-gap"></div>`,
+   connect:`Have you ever gone through a season of doubting God, the Bible, or the church? What triggered it? Where are you now?`,
+   q:[`The father says "I believe; help my unbelief" — in the same breath. Is that honest or hypocritical? What does Jesus do with it?`,`Habakkuk literally argues with God: "Why do you make me look at injustice?" God doesn't punish him for asking. What does that tell you?`,`What is the difference between honest doubt that seeks truth and cynical rejection that has already decided the answer?`,`What has the church done — in your experience — that made faith harder? What would a healthy church look like to you?`],
+   apply:`Write down your three biggest questions about God or the Bible. Don't try to answer them — just hold them honestly before God in prayer this week.`},
+  {title:`Your One Wild & Precious Life`,sub:`Purpose, Calling, Quarter-Life & Mid-Life Crisis`,
+   passage:`<div class="pb"><span class="plabel">Jeremiah 29:11 · NASB</span><div class="pt"><span class="vl"><span class="vn">11</span><mark>"For I know the plans that I have for you," declares the Lord, "plans for welfare and not for calamity to give you a future and a hope."</mark></span></div></div><div class="pb"><span class="plabel">Ephesians 2:10 · NASB</span><div class="pt"><span class="vl"><span class="vn">10</span><mark>For we are His workmanship, created in Christ Jesus for good works, which God prepared beforehand so that we would walk in them.</mark></span></div></div><div class="pb-gap"></div>`,
+   connect:`"If you could do anything with your life — anything — what would it be?" Now: what's stopping you?`,
+   q:[`"For I know the plans I have for you" — this was written to people in exile, 70 years from going home. What does it mean that God's plans survive our worst seasons?`,`"Created to do good works which God prepared in advance" — not just religious works. What do you think God has specifically wired YOU for?`,`What is the difference between your calling (who God made you to be) and your career (what you currently do for money)?`,`Quarter-life and mid-life crises are both about the same fear: wasted potential. What would it mean to live without that fear?`],
+   apply:`Write: "The good works God created me for include..." Fill in 3–5 things — big and small, paid and unpaid. Share it with someone who knows you well.`}
+];
+
+function buildCards(sessions, containerId, isReal) {
+  const wrap = document.getElementById(containerId);
+  sessions.forEach((s, i) => {
+    const d = document.createElement('button');
+    d.className = 'card';
+    const numCls = isReal ? 'cnum real' : 'cnum';
+    const arrCls = isReal ? 'carr real' : 'carr';
+    d.innerHTML = `<span class="${numCls}">${i+1}</span><span class="ctitle">${s.title}${s.sub?`<span class="csub">${s.sub}</span>`:''}</span><span class="${arrCls}">›</span>`;
+    d.onclick = () => openSession(s, i, isReal);
+    wrap.appendChild(d);
+  });
+}
+
+function openSession(s, i, isReal) {
+  const total = isReal ? RW_TOTAL : MAIN_TOTAL;
+  const numLabel = isReal ? `Topic ${i+1} of ${total}` : `Session ${i+1} of ${total}`;
+  const numCls = isReal ? 'sess-num real' : 'sess-num';
+  document.getElementById('body').innerHTML = `
+    <p class="${numCls}">${numLabel}</p>
+    <h1 class="sess-title">${s.title}</h1>
+    ${s.passage}
+    <div class="sec open-q"><span class="slabel">To open</span><p>${s.connect}</p></div>
+    <div class="sec discuss"><span class="slabel">Discuss</span><ul class="qlist">${s.q.map(q=>`<li>${q}</li>`).join('')}</ul></div>
+    <div class="sec apply"><span class="slabel">This week</span><div class="apply-box">${s.apply}</div></div>`;
+  document.getElementById('screen-main').style.display = 'none';
+  document.getElementById('screen-real').style.display = 'none';
+  const backBtn = document.getElementById('back-btn');
+  backBtn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg> ${isReal ? 'Topics' : 'Sessions'}`;
+  document.getElementById('topbar-title').textContent = s.title;
+  document.getElementById('topbar-title').classList.remove('visible');
+  const c = document.getElementById('content');
+  c.classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+  setupTitleScroll();
+}
+
+function setupTitleScroll() {
+  const titleEl = document.getElementById('topbar-title');
+  window.removeEventListener('scroll', window._titleScrollFn);
+  window._titleScrollFn = () => titleEl.classList.toggle('visible', window.scrollY > 60);
+  window.addEventListener('scroll', window._titleScrollFn, {passive:true});
+}
+
+function goBack() {
+  document.getElementById('content').classList.remove('active');
+  document.getElementById('topbar-title').classList.remove('visible');
+  window.removeEventListener('scroll', window._titleScrollFn);
+  showScreen(currentTab, true);
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+function showScreen(tab, fromBack) {
+  if (!fromBack) currentTab = tab;
+  document.getElementById('screen-main').style.display = '';
+  document.getElementById('screen-real').style.display = '';
+  document.getElementById('screen-main').classList.remove('active');
+  document.getElementById('screen-real').classList.remove('active');
+  document.getElementById('content').classList.remove('active');
+  document.getElementById('screen-' + tab).classList.add('active');
+  document.querySelectorAll('.main-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector(`.main-tab[data-tab="${tab}"]`).classList.add('active');
+  if (!fromBack) window.scrollTo({top:0,behavior:'instant'});
+}
+
+buildCards(mainSessions, 'main-cards', false);
+buildCards(rwSessions, 'real-cards', true);
+</script>
+</body>
+</html>
